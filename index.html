@@ -1,77 +1,205 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Olly ❤️</title>
-
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Olly ❤️</title>
 
 <style>
 
-body{
+*{
 margin:0;
 padding:0;
+box-sizing:border-box;
+}
+
+body{
 height:100vh;
+overflow:hidden;
 display:flex;
 justify-content:center;
 align-items:center;
-flex-direction:column;
-background:linear-gradient(to bottom,#ff9a9e,#fad0c4);
-font-family:Arial,sans-serif;
-text-align:center;
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(
+180deg,
+#0f172a,
+#1e293b,
+#312e81
+);
 color:white;
+text-align:center;
+position:relative;
+}
+
+/* Stars */
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 3s infinite;
+}
+
+@keyframes twinkle{
+0%,100%{
+opacity:.3;
+}
+50%{
+opacity:1;
+}
+}
+
+/* Floating hearts */
+
+.heart{
+position:absolute;
+font-size:20px;
+animation:floatHeart 10s linear infinite;
+opacity:.6;
+}
+
+@keyframes floatHeart{
+from{
+transform:translateY(100vh);
+}
+to{
+transform:translateY(-120px);
+}
+}
+
+.container{
+z-index:10;
+max-width:350px;
+padding:20px;
 }
 
 .teddy{
-font-size:100px;
-animation:float 2s infinite ease-in-out;
+font-size:120px;
+animation:float 3s ease-in-out infinite;
 }
 
 @keyframes float{
-0%{transform:translateY(0);}
-50%{transform:translateY(-10px);}
-100%{transform:translateY(0);}
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-15px);
+}
 }
 
 h1{
-font-size:32px;
-margin:10px;
+font-size:40px;
+margin-top:10px;
+margin-bottom:20px;
+text-shadow:0 0 20px pink;
 }
 
-p{
+.message{
 font-size:18px;
-max-width:300px;
+line-height:1.7;
+opacity:.95;
+margin-bottom:30px;
 }
 
-button{
-padding:15px 30px;
-font-size:18px;
+.button{
+padding:16px 35px;
 border:none;
-border-radius:30px;
+border-radius:40px;
+font-size:18px;
+font-weight:bold;
 background:white;
 color:#ff4f81;
-font-weight:bold;
 cursor:pointer;
+transition:.3s;
+}
+
+.button:hover{
+transform:scale(1.05);
+}
+
+.small{
+margin-top:20px;
+font-size:13px;
+opacity:.7;
 }
 
 </style>
-
 </head>
 
 <body>
 
+<div id="stars"></div>
+
+<div class="container">
+
 <div class="teddy">🧸</div>
 
-<h1>Hello Olly ❤️</h1>
+<h1>Olly ❤️</h1>
 
-<p>
-I've been collecting treasures from the last 730 days.
-Today I'd like to show them to you.
-</p>
+<div class="message">
+Two years ago,
+a beautiful chapter of my life began.
 
-<button onclick="alert('Welcome to our adventure ❤️')">
-Begin Journey
+Tonight, Teddy wants to show you
+some treasures collected over
+730 unforgettable days.
+</div>
+
+<button class="button"
+onclick="window.location.href='story.html'">
+Begin The Adventure ✨
 </button>
 
-</body>
+<div class="small">
+Made with love for our 2nd Anniversary
+</div>
 
+</div>
+
+<script>
+
+// Stars
+
+for(let i=0;i<70;i++){
+
+let star=document.createElement("div");
+
+star.classList.add("star");
+
+star.style.width=Math.random()*4+"px";
+star.style.height=star.style.width;
+
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
+
+star.style.animationDelay=Math.random()*3+"s";
+
+document.body.appendChild(star);
+}
+
+// Hearts
+
+for(let i=0;i<15;i++){
+
+let heart=document.createElement("div");
+
+heart.classList.add("heart");
+
+heart.innerHTML="❤️";
+
+heart.style.left=Math.random()*100+"%";
+
+heart.style.animationDuration=
+(8+Math.random()*8)+"s";
+
+heart.style.animationDelay=
+Math.random()*8+"s";
+
+document.body.appendChild(heart);
+}
+
+</script>
+
+</body>
 </html>
