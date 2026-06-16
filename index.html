@@ -15,16 +15,15 @@ box-sizing:border-box;
 }
 
 body{
-overflow:hidden;
 height:100vh;
+overflow:hidden;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(to bottom,#081229,#162447,#2c3e70);
+background:linear-gradient(to bottom,#07111f,#12233f,#213e68);
 display:flex;
 justify-content:center;
 align-items:center;
-text-align:center;
-position:relative;
 color:white;
+position:relative;
 }
 
 /* STARS */
@@ -33,130 +32,114 @@ color:white;
 position:absolute;
 background:white;
 border-radius:50%;
-animation:twinkle 3s infinite;
+opacity:.8;
+animation:twinkle 4s infinite;
 }
 
 @keyframes twinkle{
-0%,100%{opacity:.2;}
-50%{opacity:1;}
+50%{opacity:.2;}
 }
 
 /* CLOUDS */
 
 .cloud{
 position:absolute;
-font-size:90px;
-opacity:.18;
-animation:moveCloud 45s linear infinite;
+font-size:120px;
+opacity:.12;
+animation:cloudMove 60s linear infinite;
 }
 
-@keyframes moveCloud{
+@keyframes cloudMove{
 from{
-transform:translateX(-300px);
+transform:translateX(-400px);
 }
 to{
-transform:translateX(calc(100vw + 300px));
+transform:translateX(calc(100vw + 400px));
 }
 }
 
-/* HEARTS */
+/* TEDDY SCENE */
 
-.heart{
-position:absolute;
-font-size:22px;
-animation:floatHeart 12s linear infinite;
-opacity:.7;
-}
-
-@keyframes floatHeart{
-from{
-transform:translateY(110vh);
-}
-to{
-transform:translateY(-120px);
-}
-}
-
-/* MAIN CONTENT */
-
-.container{
+.scene{
 position:relative;
-z-index:20;
+z-index:10;
+text-align:center;
 width:90%;
-max-width:500px;
+max-width:650px;
+}
+
+.teddy-container{
+position:relative;
+height:320px;
+}
+
+.cloud-base{
+font-size:180px;
+position:absolute;
+bottom:0;
+left:50%;
+transform:translateX(-50%);
+filter:blur(1px);
 }
 
 .teddy{
-font-size:220px;
-animation:float 3s ease-in-out infinite;
-filter:drop-shadow(0 0 25px rgba(255,255,255,.4));
+position:absolute;
+width:220px;
+left:-350px;
+bottom:60px;
+animation:arrive 4s ease forwards;
 }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0px);
-}
-50%{
-transform:translateY(-18px);
+@keyframes arrive{
+to{
+left:50%;
+transform:translateX(-50%);
 }
 }
 
-.title{
-font-size:48px;
-font-weight:700;
-margin-top:-10px;
-text-shadow:0 0 20px rgba(255,255,255,.6);
-}
+/* TEXT */
 
-#message{
+.text{
 margin-top:20px;
-font-size:24px;
-line-height:1.6;
+font-size:30px;
+font-weight:300;
 min-height:120px;
-padding:0 10px;
+line-height:1.6;
+opacity:0;
+animation:fadeIn 2s forwards;
+animation-delay:4s;
 }
 
-.door{
-font-size:130px;
-margin-top:10px;
+@keyframes fadeIn{
+to{
+opacity:1;
+}
+}
+
+.line{
 display:none;
-animation:pulse 2s infinite;
+margin-bottom:10px;
 }
 
-@keyframes pulse{
-0%{
-transform:scale(1);
-}
-50%{
-transform:scale(1.08);
-}
-100%{
-transform:scale(1);
-}
-}
+/* BUTTON */
 
-button{
+.button{
 display:none;
-margin-top:20px;
-padding:18px 40px;
-font-size:20px;
-font-weight:bold;
+margin-top:30px;
+padding:18px 42px;
+background:white;
+color:#ff4d88;
 border:none;
 border-radius:50px;
-background:white;
-color:#ff4f81;
+font-size:18px;
+font-weight:700;
 cursor:pointer;
-box-shadow:0 0 20px rgba(255,255,255,.4);
+box-shadow:0 0 25px rgba(255,255,255,.3);
+transition:.3s;
 }
 
-button:hover{
+.button:hover{
 transform:scale(1.05);
-}
-
-.footer{
-margin-top:15px;
-font-size:13px;
-opacity:.75;
 }
 
 </style>
@@ -164,26 +147,22 @@ opacity:.75;
 
 <body>
 
-<div class="container">
+<div class="scene">
 
-<div class="teddy">🧸</div>
+<div class="teddy-container">
 
-<div class="title">Olly ❤️</div>
+<div class="cloud-base">☁️</div>
 
-<div id="message"></div>
+<img src="teddy.png" class="teddy">
 
-<div class="door" id="door">
-🚪✨
 </div>
 
-<button id="startBtn"
+<div class="text" id="textBox"></div>
+
+<button class="button" id="enterBtn"
 onclick="window.location.href='gifts.html'">
-Open The Treasure Room ❤️
+Enter Our Story ❤️
 </button>
-
-<div class="footer">
-730 Days • Countless Memories
-</div>
 
 </div>
 
@@ -205,7 +184,7 @@ star.style.height=size+"px";
 star.style.left=Math.random()*100+"%";
 star.style.top=Math.random()*100+"%";
 
-star.style.animationDelay=Math.random()*4+"s";
+star.style.animationDelay=Math.random()*5+"s";
 
 document.body.appendChild(star);
 
@@ -221,12 +200,12 @@ cloud.classList.add("cloud");
 
 cloud.innerHTML="☁️";
 
-cloud.style.top=(Math.random()*80)+"%";
+cloud.style.top=Math.random()*80+"%";
 
-cloud.style.left=(-300-Math.random()*500)+"px";
+cloud.style.left="-300px";
 
 cloud.style.animationDuration=
-(40+Math.random()*20)+"s";
+(40+Math.random()*40)+"s";
 
 cloud.style.animationDelay=
 (-Math.random()*50)+"s";
@@ -235,97 +214,66 @@ document.body.appendChild(cloud);
 
 }
 
-/* HEARTS */
-
-for(let i=0;i<20;i++){
-
-let heart=document.createElement("div");
-
-heart.classList.add("heart");
-
-heart.innerHTML="❤️";
-
-heart.style.left=Math.random()*100+"%";
-
-heart.style.animationDuration=
-(8+Math.random()*8)+"s";
-
-heart.style.animationDelay=
-Math.random()*8+"s";
-
-document.body.appendChild(heart);
-
-}
-
 /* STORY */
 
-const messages=[
+const lines=[
 
 "Hello Olly ❤️",
 
-"Two years ago... something beautiful began.",
+"I've been waiting for you.",
 
-"For 730 unforgettable days...",
+"Two years ago,",
 
-"I've been protecting memories, laughter, and love.",
+"a beautiful chapter began.",
 
-"Tonight I want to show you something special.",
+"And tonight...",
 
-"20 treasures collected from our story.",
+"I'd like to show you",
 
-"Are you ready to open them?"
+"some treasures from our story."
+
 ];
 
-let current=0;
+let index=0;
 
-function typeText(text,callback){
+function showNextLine(){
 
-let i=0;
+if(index<lines.length){
 
-document.getElementById("message").innerHTML="";
+let box=document.getElementById("textBox");
 
-let interval=setInterval(()=>{
+let p=document.createElement("div");
 
-document.getElementById("message").innerHTML += text.charAt(i);
+p.className="line";
 
-i++;
+p.innerText=lines[index];
 
-if(i>=text.length){
+box.appendChild(p);
 
-clearInterval(interval);
+p.style.display="block";
 
-setTimeout(callback,1800);
-
-}
-
-},55);
-
-}
-
-function nextMessage(){
-
-if(current<messages.length){
-
-typeText(messages[current],()=>{
-
-current++;
-
-nextMessage();
-
+p.animate([
+{opacity:0,transform:"translateY(20px)"},
+{opacity:1,transform:"translateY(0)"}
+],{
+duration:1200,
+fill:"forwards"
 });
 
+index++;
+
+setTimeout(showNextLine,1800);
+
+}else{
+
+document.getElementById("enterBtn")
+.style.display="inline-block";
+
 }
-else{
-
-document.getElementById("door").style.display="block";
-
-document.getElementById("startBtn").style.display="inline-block";
 
 }
 
-}
-
-nextMessage();
+setTimeout(showNextLine,5000);
 
 </script>
 
