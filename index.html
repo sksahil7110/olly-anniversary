@@ -18,128 +18,195 @@ body{
 height:100vh;
 overflow:hidden;
 font-family:'Segoe UI',sans-serif;
-background:linear-gradient(to bottom,#07111f,#12233f,#213e68);
+background:linear-gradient(
+180deg,
+#081229,
+#132c57,
+#2d3f8c
+);
 display:flex;
 justify-content:center;
 align-items:center;
-color:white;
 position:relative;
 }
 
-/* STARS */
+/* Stars */
 
 .star{
 position:absolute;
 background:white;
 border-radius:50%;
-opacity:.8;
-animation:twinkle 4s infinite;
+animation:twinkle 3s infinite;
 }
 
 @keyframes twinkle{
-50%{opacity:.2;}
+0%,100%{
+opacity:.2;
 }
-
-/* CLOUDS */
-
-.cloud{
-position:absolute;
-font-size:120px;
-opacity:.12;
-animation:cloudMove 60s linear infinite;
-}
-
-@keyframes cloudMove{
-from{
-transform:translateX(-400px);
-}
-to{
-transform:translateX(calc(100vw + 400px));
-}
-}
-
-/* TEDDY SCENE */
-
-.scene{
-position:relative;
-z-index:10;
-text-align:center;
-width:90%;
-max-width:650px;
-}
-
-.teddy-container{
-position:relative;
-height:320px;
-}
-
-.cloud-base{
-font-size:180px;
-position:absolute;
-bottom:0;
-left:50%;
-transform:translateX(-50%);
-filter:blur(1px);
-}
-
-.teddy{
-position:absolute;
-width:220px;
-left:-350px;
-bottom:60px;
-animation:arrive 4s ease forwards;
-}
-
-@keyframes arrive{
-to{
-left:50%;
-transform:translateX(-50%);
-}
-}
-
-/* TEXT */
-
-.text{
-margin-top:20px;
-font-size:30px;
-font-weight:300;
-min-height:120px;
-line-height:1.6;
-opacity:0;
-animation:fadeIn 2s forwards;
-animation-delay:4s;
-}
-
-@keyframes fadeIn{
-to{
+50%{
 opacity:1;
 }
 }
 
-.line{
-display:none;
-margin-bottom:10px;
+/* Clouds */
+
+.cloud{
+position:absolute;
+font-size:120px;
+opacity:.18;
+animation:floatCloud 20s linear infinite;
 }
 
-/* BUTTON */
+@keyframes floatCloud{
+from{
+transform:translateX(-300px);
+}
+to{
+transform:translateX(calc(100vw + 300px));
+}
+}
 
-.button{
-display:none;
-margin-top:30px;
-padding:18px 42px;
-background:white;
-color:#ff4d88;
+/* Main Card */
+
+.hero{
+position:relative;
+z-index:5;
+text-align:center;
+padding:40px;
+width:90%;
+max-width:700px;
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.15);
+border-radius:35px;
+box-shadow:0 0 40px rgba(255,255,255,.08);
+}
+
+/* Teddy */
+
+.teddy-wrap{
+position:relative;
+height:180px;
+}
+
+.teddy{
+font-size:130px;
+position:absolute;
+left:-1000px;
+animation:
+walkIn 3s ease forwards,
+wave 2s infinite 3s;
+}
+
+@keyframes walkIn{
+0%{
+left:-1000px;
+}
+100%{
+left:50%;
+transform:translateX(-50%);
+}
+}
+
+@keyframes wave{
+0%,100%{
+transform:translateX(-50%) rotate(0deg);
+}
+50%{
+transform:translateX(-50%) rotate(10deg);
+}
+}
+
+/* Title */
+
+.title{
+font-size:4rem;
+color:white;
+font-weight:700;
+margin-top:20px;
+
+opacity:0;
+animation:fadeIn 1s ease forwards 2.8s;
+text-shadow:
+0 0 20px rgba(255,255,255,.5),
+0 0 40px rgba(255,105,180,.4);
+}
+
+.subtitle{
+margin-top:20px;
+font-size:1.3rem;
+line-height:1.8;
+color:white;
+opacity:.9;
+
+opacity:0;
+animation:fadeIn 1s ease forwards 3.5s;
+}
+
+.enter-btn{
+margin-top:35px;
+padding:18px 50px;
+font-size:1.1rem;
+font-weight:600;
 border:none;
 border-radius:50px;
-font-size:18px;
-font-weight:700;
 cursor:pointer;
-box-shadow:0 0 25px rgba(255,255,255,.3);
-transition:.3s;
+background:white;
+color:#ff4d88;
+transition:.4s;
+
+opacity:0;
+animation:fadeIn 1s ease forwards 4.2s;
 }
 
-.button:hover{
-transform:scale(1.05);
+.enter-btn:hover{
+transform:scale(1.08);
+box-shadow:0 0 30px rgba(255,105,180,.7);
+}
+
+@keyframes fadeIn{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+/* Floating Hearts */
+
+.heart{
+position:absolute;
+font-size:24px;
+color:pink;
+animation:floatHeart linear infinite;
+opacity:.7;
+}
+
+@keyframes floatHeart{
+from{
+transform:translateY(100vh);
+opacity:0;
+}
+20%{
+opacity:1;
+}
+to{
+transform:translateY(-120vh);
+opacity:0;
+}
+}
+
+/* Footer */
+
+.footer{
+margin-top:25px;
+color:rgba(255,255,255,.75);
+font-size:.95rem;
+opacity:0;
+animation:fadeIn 1s ease forwards 4.8s;
 }
 
 </style>
@@ -147,133 +214,82 @@ transform:scale(1.05);
 
 <body>
 
-<div class="scene">
+<!-- Clouds -->
+<div class="cloud" style="top:8%;animation-duration:35s;">☁️</div>
+<div class="cloud" style="top:25%;animation-duration:40s;">☁️</div>
+<div class="cloud" style="top:70%;animation-duration:45s;">☁️</div>
+<div class="cloud" style="top:55%;animation-duration:30s;">☁️</div>
 
-<div class="teddy-container">
+<!-- Hero -->
+<div class="hero">
 
-<div class="cloud-base">☁️</div>
-
-<img src="teddy.png" class="teddy">
-
+<div class="teddy-wrap">
+<div class="teddy">🧸</div>
 </div>
 
-<div class="text" id="textBox"></div>
+<h1 class="title">
+Welcome, Olly ❤️
+</h1>
 
-<button class="button" id="enterBtn"
-onclick="window.location.href='gifts.html'">
-Enter Our Story ❤️
+<p class="subtitle">
+Two years ago, our story began.<br>
+Tonight, Teddy has something special to show you.<br>
+A collection of moments, memories and love from the last 730 days.
+</p>
+
+<button class="enter-btn"
+onclick="window.location.href='story.html'">
+Begin Our Journey ✨
 </button>
+
+<div class="footer">
+Made with ❤️ for our 2nd Anniversary
+</div>
 
 </div>
 
 <script>
 
-/* STARS */
+/* Stars */
 
-for(let i=0;i<120;i++){
+for(let i=0;i<180;i++){
 
 let star=document.createElement("div");
-
-star.classList.add("star");
+star.className="star";
 
 let size=Math.random()*3+1;
 
 star.style.width=size+"px";
 star.style.height=size+"px";
 
-star.style.left=Math.random()*100+"%";
-star.style.top=Math.random()*100+"%";
+star.style.left=Math.random()*100+"vw";
+star.style.top=Math.random()*100+"vh";
 
-star.style.animationDelay=Math.random()*5+"s";
+star.style.animationDuration=
+(Math.random()*4+2)+"s";
 
 document.body.appendChild(star);
-
 }
 
-/* CLOUDS */
+/* Hearts */
 
-for(let i=0;i<8;i++){
+for(let i=0;i<25;i++){
 
-let cloud=document.createElement("div");
+let heart=document.createElement("div");
 
-cloud.classList.add("cloud");
+heart.className="heart";
+heart.innerHTML="💖";
 
-cloud.innerHTML="☁️";
+heart.style.left=Math.random()*100+"vw";
 
-cloud.style.top=Math.random()*80+"%";
+heart.style.animationDuration=
+(Math.random()*10+8)+"s";
 
-cloud.style.left="-300px";
+heart.style.animationDelay=
+Math.random()*8+"s";
 
-cloud.style.animationDuration=
-(40+Math.random()*40)+"s";
-
-cloud.style.animationDelay=
-(-Math.random()*50)+"s";
-
-document.body.appendChild(cloud);
-
+document.body.appendChild(heart);
 }
-
-/* STORY */
-
-const lines=[
-
-"Hello Olly ❤️",
-
-"I've been waiting for you.",
-
-"Two years ago,",
-
-"a beautiful chapter began.",
-
-"And tonight...",
-
-"I'd like to show you",
-
-"some treasures from our story."
-
-];
-
-let index=0;
-
-function showNextLine(){
-
-if(index<lines.length){
-
-let box=document.getElementById("textBox");
-
-let p=document.createElement("div");
-
-p.className="line";
-
-p.innerText=lines[index];
-
-box.appendChild(p);
-
-p.style.display="block";
-
-p.animate([
-{opacity:0,transform:"translateY(20px)"},
-{opacity:1,transform:"translateY(0)"}
-],{
-duration:1200,
-fill:"forwards"
-});
-
-index++;
-
-setTimeout(showNextLine,1800);
-
-}else{
-
-document.getElementById("enterBtn")
-.style.display="inline-block";
-
-}
-
-}
-
-setTimeout(showNextLine,5000);
 
 </script>
 
