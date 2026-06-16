@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Our Journey ❤️</title>
+<title>Our Journey ✨</title>
 
 <style>
 
@@ -12,190 +12,244 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
 }
 
 body{
 height:100vh;
 overflow:hidden;
-font-family:'Segoe UI',sans-serif;
-background:#000;
+background:
+linear-gradient(
+135deg,
+#0f172a,
+#581c87,
+#ec4899
+);
 display:flex;
 justify-content:center;
 align-items:center;
 position:relative;
 }
 
-/* Fade In */
+/* Sparkles */
 
-body{
-animation:fadeIn 2s ease forwards;
+.sparkle{
+position:absolute;
+color:white;
+font-size:18px;
+animation:twinkle linear infinite;
 }
 
-@keyframes fadeIn{
+@keyframes twinkle{
+0%,100%{
+opacity:.2;
+transform:scale(.5);
+}
+50%{
+opacity:1;
+transform:scale(1.3);
+}
+}
+
+/* Flower */
+
+.flower{
+position:relative;
+width:350px;
+height:350px;
+display:flex;
+justify-content:center;
+align-items:center;
+animation:flowerAppear 2s ease forwards;
+}
+
+@keyframes flowerAppear{
 from{
+transform:scale(0);
 opacity:0;
 }
 to{
+transform:scale(1);
 opacity:1;
 }
 }
-
-/* Petals */
 
 .petal{
 position:absolute;
-font-size:32px;
-animation:fall linear infinite;
-opacity:.9;
-}
-
-@keyframes fall{
-
-0%{
-transform:translateY(-150px) rotate(0deg);
-opacity:0;
-}
-
-10%{
-opacity:1;
-}
-
-100%{
-transform:
-translateY(120vh)
-rotate(360deg);
-
-opacity:0;
-}
-
-}
-
-/* Center Card */
-
-.card{
-
-position:relative;
-z-index:5;
-
-width:90%;
-max-width:700px;
-
-padding:40px;
-
-text-align:center;
-
-background:rgba(255,255,255,.08);
-
-backdrop-filter:blur(20px);
-
-border:1px solid rgba(255,255,255,.15);
-
-border-radius:30px;
-
-box-shadow:0 0 40px rgba(255,255,255,.1);
-
-}
-
-/* Title */
-
-.title{
-
-font-size:3rem;
-
-color:#f8d87c;
-
-margin-bottom:20px;
-
-opacity:0;
-
-animation:
-slideUp 1.5s forwards 2s;
-
-}
-
-.text{
-
-font-size:1.3rem;
-
-line-height:1.8;
-
-color:white;
-
-opacity:0;
-
-animation:
-slideUp 1.5s forwards 3.2s;
-
-}
-
-.btn{
-
-margin-top:35px;
-
-padding:18px 50px;
-
-border:none;
-
-border-radius:50px;
-
-font-size:1rem;
-
-font-weight:600;
-
-cursor:pointer;
+width:120px;
+height:180px;
+border-radius:60px 60px 0 0;
 
 background:
 linear-gradient(
-45deg,
-#f8d87c,
-#ffd700
+180deg,
+#fff8dc,
+#ffd6e8,
+#ff69b4
 );
 
+transform-origin:bottom center;
+
 opacity:0;
 
-animation:
-slideUp 1.5s forwards 4.5s;
-
+animation:bloom 2s forwards;
 }
 
-@keyframes slideUp{
-
+@keyframes bloom{
 from{
+transform:scale(0);
 opacity:0;
-transform:translateY(50px);
 }
-
 to{
 opacity:1;
-transform:translateY(0);
+}
 }
 
+.p1{
+transform:rotate(0deg) translateY(-80px);
+animation-delay:.2s;
 }
 
-/* Flower Border */
+.p2{
+transform:rotate(45deg) translateY(-80px);
+animation-delay:.4s;
+}
 
-.borderFlower{
+.p3{
+transform:rotate(90deg) translateY(-80px);
+animation-delay:.6s;
+}
 
+.p4{
+transform:rotate(135deg) translateY(-80px);
+animation-delay:.8s;
+}
+
+.p5{
+transform:rotate(180deg) translateY(-80px);
+animation-delay:1s;
+}
+
+.p6{
+transform:rotate(225deg) translateY(-80px);
+animation-delay:1.2s;
+}
+
+.p7{
+transform:rotate(270deg) translateY(-80px);
+animation-delay:1.4s;
+}
+
+.p8{
+transform:rotate(315deg) translateY(-80px);
+animation-delay:1.6s;
+}
+
+.center{
+width:90px;
+height:90px;
+background:#ffd700;
+border-radius:50%;
+box-shadow:
+0 0 40px gold,
+0 0 80px gold;
+z-index:5;
+}
+
+/* Text */
+
+.message{
 position:absolute;
+bottom:140px;
+width:90%;
+max-width:700px;
+text-align:center;
+color:white;
+font-size:1.4rem;
+line-height:1.8;
+opacity:0;
+animation:showText 2s forwards 3.5s;
+}
 
-font-size:42px;
+@keyframes showText{
+to{
+opacity:1;
+}
+}
 
-opacity:.8;
+/* Door */
 
-animation:pulse 3s infinite;
+.door{
+position:absolute;
+bottom:-250px;
 
+width:160px;
+height:240px;
+
+border-radius:15px;
+
+background:
+linear-gradient(
+180deg,
+#ffd700,
+#d4af37
+);
+
+box-shadow:
+0 0 30px gold,
+0 0 60px rgba(255,215,0,.5);
+
+cursor:pointer;
+
+transition:.5s;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-weight:bold;
+color:#5b3a00;
+
+animation:doorRise 2s forwards 6s;
+}
+
+@keyframes doorRise{
+to{
+bottom:40px;
+}
+}
+
+.door:hover{
+transform:scale(1.08);
+box-shadow:
+0 0 50px gold,
+0 0 100px gold;
+}
+
+/* Glow */
+
+.glow{
+position:absolute;
+width:600px;
+height:600px;
+border-radius:50%;
+background:
+radial-gradient(
+circle,
+rgba(255,215,0,.25),
+transparent 70%
+);
+
+animation:pulse 4s infinite;
 }
 
 @keyframes pulse{
-
 0%,100%{
 transform:scale(1);
 }
-
 50%{
-transform:scale(1.2);
+transform:scale(1.15);
 }
-
 }
 
 </style>
@@ -203,65 +257,75 @@ transform:scale(1.2);
 
 <body>
 
-<div class="borderFlower" style="top:20px;left:20px;">🌹</div>
-<div class="borderFlower" style="top:20px;right:20px;">🌸</div>
-<div class="borderFlower" style="bottom:20px;left:20px;">🌺</div>
-<div class="borderFlower" style="bottom:20px;right:20px;">🌷</div>
+<div class="glow"></div>
 
-<div class="card">
+<div class="flower">
 
-<h1 class="title">
-The Treasure Room ✨
-</h1>
+<div class="petal p1"></div>
+<div class="petal p2"></div>
+<div class="petal p3"></div>
+<div class="petal p4"></div>
+<div class="petal p5"></div>
+<div class="petal p6"></div>
+<div class="petal p7"></div>
+<div class="petal p8"></div>
 
-<div class="text">
-A collection of moments,<br>
-memories and emotions<br>
-carefully gathered over<br>
-730 unforgettable days.
+<div class="center"></div>
+
 </div>
 
-<button class="btn"
-onclick="window.location.href='gifts.html'">
-Open The Treasure Room ❤️
-</button>
+<div class="message" id="message">
+</div>
 
+<div class="door"
+onclick="window.location.href='gifts.html'">
+✨ Enter The Treasure Room ✨
 </div>
 
 <script>
 
-/* Falling Flowers */
+/* Sparkles */
 
-const flowers=[
-"🌹","🌸","🌺","🌷","💮"
-];
+for(let i=0;i<120;i++){
 
-for(let i=0;i<60;i++){
+let s=document.createElement("div");
 
-let petal=
-document.createElement("div");
+s.className="sparkle";
 
-petal.className="petal";
+s.innerHTML="✨";
 
-petal.innerHTML=
-flowers[
-Math.floor(
-Math.random()*flowers.length
-)
-];
+s.style.left=Math.random()*100+"vw";
+s.style.top=Math.random()*100+"vh";
 
-petal.style.left=
-Math.random()*100+"vw";
+s.style.animationDuration=
+(2+Math.random()*4)+"s";
 
-petal.style.animationDuration=
-(8+Math.random()*10)+"s";
+document.body.appendChild(s);
+}
 
-petal.style.animationDelay=
-Math.random()*8+"s";
+/* Typing Effect */
 
-document.body.appendChild(petal);
+const text=
+"For Two Years... ❤️<br><br>We laughed.<br>We cried.<br>We stayed.<br><br>And every memory led here.";
+
+let i=0;
+
+function type(){
+
+if(i<text.length){
+
+document.getElementById("message").innerHTML=
+text.substring(0,i);
+
+i++;
+
+setTimeout(type,45);
 
 }
+
+}
+
+setTimeout(type,3500);
 
 </script>
 
